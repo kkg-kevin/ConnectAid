@@ -1,0 +1,46 @@
+{
+  "name": "ngo-aid-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.13.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docker:build": "docker build -t aidconnect-frontend .",
+    "docker:run": "docker run -p 80:80 aidconnect-frontend",
+    "docker:dev": "docker-compose --profile dev up",
+    "docker:prod": "docker-compose up --build",
+    "deploy:k8s": "chmod +x scripts/deploy.sh && ./scripts/deploy.sh",
+    "build:push": "chmod +x scripts/build-and-push.sh && ./scripts/build-and-push.sh"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

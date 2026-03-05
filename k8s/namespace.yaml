@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aidconnect
+  labels:
+    name: aidconnect
+    environment: production
