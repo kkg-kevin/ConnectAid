@@ -26,7 +26,7 @@ jobs:
         cache: 'npm'
         
     - name: Install dependencies
-      run: npm install --force || echo "Dependencies install failed, continuing..."
+      run: npm install
       
     - name: Run tests (optional)
       run: CI=true npm test -- --coverage --watchAll=false --passWithNoTests --testPathIgnorePatterns=/node_modules/ || echo "Tests failed, continuing..."
