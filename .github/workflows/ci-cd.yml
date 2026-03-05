@@ -44,13 +44,14 @@ jobs:
       contents: read
       security-events: write
       actions: read
+      pull-requests: write
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@master
+      uses: aquasecurity/trivy-action@0.16.0
       with:
         scan-type: 'fs'
         scan-ref: '.'
@@ -62,6 +63,7 @@ jobs:
       with:
         sarif_file: 'trivy-results.sarif'
       continue-on-error: true
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
   # Build and Push Docker Image
   build-and-push:
