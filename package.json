@@ -23,6 +23,7 @@
     "docker:dev": "docker-compose --profile dev up",
     "docker:prod": "docker-compose up --build",
     "deploy:k8s": "chmod +x scripts/deploy.sh && ./scripts/deploy.sh",
+    "deploy:staging": "chmod +x scripts/deploy-staging.sh && ./scripts/deploy-staging.sh",
     "build:push": "chmod +x scripts/build-and-push.sh && ./scripts/build-and-push.sh"
   },
   "eslintConfig": {

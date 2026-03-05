@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: aidconnect-staging
+  labels:
+    name: aidconnect-staging
+    environment: staging

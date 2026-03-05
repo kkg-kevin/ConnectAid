@@ -120,10 +120,27 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.28.0'
+      
+    - name: Configure kubectl
+      run: |
+        echo "${{ secrets.KUBE_CONFIG_STAGING }}" | base64 -d > kubeconfig
+        export KUBECONFIG=kubeconfig
+        
     - name: Deploy to staging
       run: |
-        echo "Deploying to staging environment..."
-        # Add your staging deployment commands here
+        export KUBECONFIG=kubeconfig
+        kubectl set image deployment/aidconnect-frontend aidconnect-frontend=ghcr.io/kkg-kevin/connectaid:develop -n aidconnect-staging
+        kubectl rollout status deployment/aidconnect-frontend -n aidconnect-staging --timeout=300s
+        
+    - name: Verify deployment
+      run: |
+        export KUBECONFIG=kubeconfig
+        kubectl get pods -n aidconnect-staging -l app=aidconnect-frontend
+        kubectl get services -n aidconnect-staging
 
   # Deploy to Production
   deploy-production:
